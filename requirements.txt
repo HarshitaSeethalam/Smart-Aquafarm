@@ -3,3 +3,6 @@ psycopg2-binary
 reportlab
 openpyxl
 gunicorn
+oracledb
+pandas
+numpy
