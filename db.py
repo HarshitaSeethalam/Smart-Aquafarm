@@ -1,14 +1,13 @@
-import oracledb
+import os
+import psycopg2
 
-oracledb.init_oracle_client(
-    lib_dir=r"C:\Users\DELL\OneDrive\Documents\instantclient_23_26\instantclient_23_0"
-)
+DATABASE_URL = os.environ.get("DATABASE_URL")
 
-connection = oracledb.connect(
-    user="HARSHITA SEETHALAM",
-    password="Harshita@333",
-    dsn="localhost:1521/XE"
-)
+if not DATABASE_URL:
+    raise Exception("DATABASE_URL environment variable is not set")
 
-cursor=connection.cursor()
-print("Connected Successfully")
+connection = psycopg2.connect(DATABASE_URL)
+
+cursor = connection.cursor()
+
+print("PostgreSQL Connected Successfully")
