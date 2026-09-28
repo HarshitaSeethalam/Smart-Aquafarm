@@ -17,7 +17,35 @@ import os
 
 app = Flask(__name__)
 
+# =========================================================
+# SPECIES IMAGE MAPPING
+# =========================================================
 
+SPECIES_IMAGES = {
+    "koramenu": "koramenu.jpg",
+    "rupchandha": "rupchandha.jpg",
+    "pangas": "pangas.jpg",
+    "silavati": "silavati.jpg",
+    "catla": "catla.jpg",
+    "catfish": "catfish.jpg",
+    "tiger prawn": "tiger.jpg",
+    "king prawn": "king.jpg",
+    "vannamei prawn": "vannamei.jpg",
+    "kala prawn": "kala.jpg"
+}
+
+
+def get_species_image(species):
+
+    if not species:
+        return "default.jpg"
+
+    species_key = str(species).strip().lower()
+
+    return SPECIES_IMAGES.get(
+        species_key,
+        "default.jpg"
+    )
 # =========================================================
 # HOME PAGE
 # =========================================================
@@ -309,6 +337,10 @@ def dashboard():
 # POND MANAGEMENT
 # =========================================================
 
+# =========================================================
+# POND MANAGEMENT
+# =========================================================
+
 @app.route("/ponds")
 def ponds():
 
@@ -327,12 +359,29 @@ def ponds():
 
     pond_list = cursor.fetchall()
 
+    ponds = []
+
+    for pond in pond_list:
+
+        pond_id = pond[0]
+        pond_name = pond[1]
+        species = pond[2]
+        area = pond[3]
+        fish_count = pond[4]
+
+        ponds.append({
+            "pond_id": pond_id,
+            "pond_name": pond_name,
+            "species": species,
+            "area": area,
+            "fish_count": fish_count,
+            "image": get_species_image(species)
+        })
+
     return render_template(
         "ponds.html",
-        ponds=pond_list
+        ponds=ponds
     )
-
-
 # =========================================================
 # EDIT POND PAGE
 # =========================================================
