@@ -1,7 +1,5 @@
 Flask
+gunicorn
 psycopg2-binary
 reportlab
 openpyxl
-gunicorn
-pandas
-numpy
