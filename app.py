@@ -28,9 +28,17 @@ SPECIES_IMAGES = {
     "silavati": "silavati.jpg",
     "catla": "catla.jpg",
     "catfish": "catfish.jpg",
+
+    "tiger": "tiger.jpg",
     "tiger prawn": "tiger.jpg",
+
+    "king": "king.jpg",
     "king prawn": "king.jpg",
+
+    "vannamei": "vannamei.jpg",
     "vannamei prawn": "vannamei.jpg",
+
+    "kala": "kala.jpg",
     "kala prawn": "kala.jpg"
 }
 
